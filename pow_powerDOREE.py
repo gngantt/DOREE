@@ -1,5 +1,5 @@
 '''
-DOREE - Gabby Gantt, Jacob Lebruex, Janine Thomas
+DOREE - Gabby Gantt, Jacob Lebreux, Janine Thomas
 
 This file is main file for DOREE to run her power method
 
@@ -41,7 +41,7 @@ readysig = 0 #signal has been sent or not, 1/0
 
 tol = 0.5
 print('Raw ADC Value: ', chan0.value)
-print('ADC Voltage: ', + str(chan0.voltage) + 'V')
+print('ADC Voltage: ', chan0.voltage, 'V\n')
 
 while True:
     # current val of battery
@@ -50,7 +50,7 @@ while True:
     # if battery has reached warning level and hasn't been acknowledged
     # send signal to navigation
     if ((battery <= constDOREE.WARN) and (warnsig == 0)):
-        print('Battery level: ' + battery + '. Warning level reached!')
+        print('Battery level: ', battery, 'V Warning level reached!')
         # figure out code to send signal to navigation
         # in the mean time test w test variables
         
@@ -62,7 +62,7 @@ while True:
     # to navigation
     elif ((battery >= constDOREE.READY) and (readysig == 0)
           and (warnsig == 1)):
-        print('Battery level: ' + battery + '. Ready level reached!')
+        print('Battery level: ', battery, 'V Ready level reached!')
         # figure out code to send signal to navigation
         # in the mean time test w variable test_warn
 
@@ -70,6 +70,6 @@ while True:
         warnsig, readysig = 0, 1
         
     else:
-        print('Battery level: ' + battery + '.')
-
+        print('Battery level: ', battery, 'V')
     
+    time.sleep(1)
