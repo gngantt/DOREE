@@ -18,9 +18,8 @@ while not okay:
     print('The warning level for DOREE is ', WARN)
     print('The ready level for DOREE is ', READY)
 
-    question = input('Is this okay? (Y/N): ')
+    question = input('\nIs this okay? (Y/N): ')
 
-    okay = True if (question == 'Y') else False
-    print(' ')
+    okay = True if ((question == 'Y') or (question == 'y')) else False
 
-print('Warning and Ready levels have been set!')
+print('Warning and Ready levels have been set!\n')
