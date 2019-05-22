@@ -1,10 +1,12 @@
-# DOREE - Gabby Gantt, Jacob Lebruex, Janine Thomas
-#
-# This file is main file for DOREE to run her power method
-#
-# DOREE will ocnstantly ready thevoltage level of her battery. Once she has
-# reached either of the desired battery levels, she will send a signal to
-# navigation to either abort or resume the mission
+'''
+DOREE - Gabby Gantt, Jacob Lebruex, Janine Thomas
+
+This file is main file for DOREE to run her power method
+
+DOREE will ocnstantly ready thevoltage level of her battery. Once she has
+reached either of the desired battery levels, she will send a signal to
+navigation to either abort or resume the mission
+'''
 
 import constDOREE
 import os
@@ -27,11 +29,15 @@ mcp = MCP.MCP3008(spi, cs)
 # create an analog input channel on pin 0
 chan0 = AnalogIn(mcp, MCP.P0)
 
+# mcp cs. high -> low for device communication
+board.D22.value(1)
+board.D22.value(0)
+
 # test variables until integration
-test_warn = 0
-test_ready = 0
-warnsig = 0
-readysig = 0
+test_warn = 0 #has warning level been reached
+test_ready = 0 #has ready level been reached
+warnsig = 0 #signal has been sent or not, 1/0
+readysig = 0 #signal has been sent or not, 1/0
 
 tol = 0.5
 print('Raw ADC Value: ', chan0.value)
@@ -39,18 +45,24 @@ print('ADC Voltage: ', + str(chan0.voltage) + 'V')
 
 while True:
     # current val of battery
-    battery_lvl = chan0.value
+    battery = chan0.voltage
 
-    if ((chan0.value <= constDOREE.WARN) and (warnsig == 0)):
-        print('Battery level: ' + battery_lvl + '. Warning level reached!')
+    # if battery has reached warning level and hasn't been acknowledged
+    # send signal to navigation
+    if ((battery <= constDOREE.WARN) and (warnsig == 0)):
+        print('Battery level: ' + battery + '. Warning level reached!')
         # figure out code to send signal to navigation
         # in the mean time test w test variables
         
         test_warn, test_ready = 1, 0
         warnsig, readysig = 1, 0
         
-    elif ((chan0.value >= constDOREE.READY) and (readysig == 0)):
-        print('Battery level: ' + battery_lvl + '. Ready level reached!')
+    # if battery has reached ready level and hasn't been acknowledged
+    # and was charging (not just booted up in a good state send signal
+    # to navigation
+    elif ((battery >= constDOREE.READY) and (readysig == 0)
+          and (warnsig == 1)):
+        print('Battery level: ' + battery + '. Ready level reached!')
         # figure out code to send signal to navigation
         # in the mean time test w variable test_warn
 
@@ -58,6 +70,6 @@ while True:
         warnsig, readysig = 0, 1
         
     else:
-        print('Battery level: ' + battery_lvl + '.')
+        print('Battery level: ' + battery + '.')
 
     
