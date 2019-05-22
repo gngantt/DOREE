@@ -29,18 +29,16 @@ chan0 = AnalogIn(mcp, MCP.P0)
 # uncomment these if running after boot up then comment again
 # this is the chip select. needs to be set high then low for device
 # communication
-#board.D22.value(1)
-#board.D22.value(0)
-
-time.sleep(0.000001)
-
-tol = 0.5
-print('Raw ADC Value: ', chan0.value)
-print('ADC Voltage: ', chan0.voltage, 'V')
+board.D22.value(1)
+board.D22.value(0)
 
 #while True:
-    
     # current val of battery
     # battery_lvl = chan0.value
 
     # print('Battery level: ' + battery_lvl + '.')
+    print('Raw ADC Value: ', chan0.value)
+    print('ADC Voltage: ', chan0.voltage, 'V')
+    print(' ')
+    
+    time.sleep(1)
