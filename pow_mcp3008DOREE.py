@@ -1,6 +1,8 @@
-# DOREE - Gabby Gantt, Jacob Lebruex, Janine Thomas
-#
-# This file is test the MCP3008 and analyze its outputs with batteries
+'''
+DOREE - Gabby Gantt, Jacob Lebreux, Janine Thomas
+
+This file is test the MCP3008 and analyze its outputs with batteries
+'''
 
 # import constDOREE
 import os
