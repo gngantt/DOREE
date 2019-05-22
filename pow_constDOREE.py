@@ -1,11 +1,13 @@
-# DOREE - Gabby Gantt, Jacob Lebruex, Janine Thomas
-#
-# This file is used to receive the programmed warning and ready levels for DOREE
-#
-# WARN - the warning level where, when reached, DOREE will need to abort mission
-# to go charge her battery
-# READY - the ready level where, when reached, DOREE will need to stop charging
-# and continue with her mission
+'''
+DOREE - Gabby Gantt, Jacob Lebreux, Janine Thomas
+
+This file is used to receive the programmed warning and ready levels for DOREE
+
+WARN - the warning level where, when reached, DOREE will need to abort mission
+to go charge her battery
+READY - the ready level where, when reached, DOREE will need to stop charging
+and continue with her mission
+'''
 
 okay = False
 
