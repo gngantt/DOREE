@@ -34,13 +34,7 @@ chan0 = AnalogIn(mcp, MCP.P0)
 board.D22.value(1)
 board.D22.value(0)
 
-#while True:
-    # current val of battery
-    # battery_lvl = chan0.value
-
-    # print('Battery level: ' + battery_lvl + '.')
+while True:
     print('Raw ADC Value: ', chan0.value)
-    print('ADC Voltage: ', chan0.voltage, 'V')
-    print(' ')
-    
+    print('ADC Voltage: ', chan0.voltage, 'V\n')
     time.sleep(1)
