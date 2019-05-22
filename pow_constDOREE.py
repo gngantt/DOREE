@@ -12,8 +12,8 @@ and continue with her mission
 okay = False
 
 while not okay:
-    WARN = input('Please enter the desired warning level: ')
-    READY = input('Please enter the desired ready level: ')
+    WARN = float(input('Please enter the desired warning level: '))
+    READY = float(input('Please enter the desired ready level: '))
 
     print('The warning level for DOREE is ', WARN)
     print('The ready level for DOREE is ', READY)
