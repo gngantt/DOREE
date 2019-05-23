@@ -13,6 +13,7 @@ try:
     PIN_POWER = 1 #change when actually implemented
     PIN_DETECTION = 1 #change when actually implemented
 
+    GPIO.setup(PIN_POWER, GPIO.in)
 
 
 finally:
