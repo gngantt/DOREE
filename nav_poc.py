@@ -6,10 +6,14 @@ Navigation Proof Of Concept Code
 
 #!/usr/bin/python
 import RPi.GPIO as GPIO
-import time
 
 try:
     GPIO.setmode(GPIO.BOARD)
+
+    PIN_POWER = 1 #change when actually implemented
+    PIN_DETECTION = 1 #change when actually implemented
+
+
 
 finally:
     GPIO.cleanup()

@@ -36,7 +36,7 @@ try:
         while GPIO.input(PIN_ECHO)==1:
             pulse_end_time = time.time()
 
-        pulse_duration - pulse_end_time - pulse_start_time
+        pulse_duration = pulse_end_time - pulse_start_time
         distance = round(pulse_duration * 17150, 2)
         print ("Distance:", distance, "cm")
 
