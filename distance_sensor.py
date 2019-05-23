@@ -10,9 +10,11 @@ import time
 try:
         GPIO.setmode(GPIO.BOARD)
 
+        #initiates GPIO pins on Pi
         PIN_TRIGGER = 7
         PIN_ECHO = 11
 
+        #sets pins to input or output
         GPIO.setup(PIN_TRIGGER, GPIO.OUT)
         GPIO.setup(PIN_ECHO, GPIO.IN)
 

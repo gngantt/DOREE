@@ -13,25 +13,16 @@ try:
     PIN_POWER = 1 #change when actually implemented
     PIN_DETECTION = 1 #change when actually implemented
 
+    LED_POWER = 1 #change when actually implemented
+    LED_LEFT_NAV = 1 #change when actually implemented
+    LED_RIGHT_NAV = 1 #change when actually implemented
+
     GPIO.setup(PIN_POWER, GPIO.in)
+    GPIO.setup(PIN_DETECTION, GPIO.in)
+
+
+    #while GPIO.input(PIN_POWER)==1:
 
 
 finally:
     GPIO.cleanup()
-"""
-Power:
-if (low power)
-    start ascent
-
-else
-    keep moving
-
-
-Detection:
-    if (detected on left)
-        turn on left led
-    elif (detected on right)
-        turn on right led
-    else
-        no led
-"""
