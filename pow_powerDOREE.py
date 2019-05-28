@@ -3,7 +3,7 @@ DOREE - Gabby Gantt, Jacob Lebreux, Janine Thomas
 
 This file is main file for DOREE to run her power method
 
-DOREE will ocnstantly ready thevoltage level of her battery. Once she has
+DOREE will constantly ready the voltage level of her battery. Once she has
 reached either of the desired battery levels, she will send a signal to
 navigation to either abort or resume the mission
 '''
@@ -33,6 +33,9 @@ chan0 = AnalogIn(mcp, MCP.P0)
 board.D22.value(1)
 board.D22.value(0)
 
+# Set GPIO pin to output for ready/warning signal
+board.D17.init(1)
+
 # test variables until integration
 test_warn = 0 #has warning level been reached
 test_ready = 0 #has ready level been reached
@@ -51,22 +54,17 @@ while True:
     # send signal to navigation
     if ((battery <= constDOREE.WARN) and (warnsig == 0)):
         print('Battery level: ', battery, 'V Warning level reached!')
-        # figure out code to send signal to navigation
-        # in the mean time test w test variables
-        
-        test_warn, test_ready = 1, 0
+        board.D17.value(1) # set pin high if warning level reached
+
         warnsig, readysig = 1, 0
         
     # if battery has reached ready level and hasn't been acknowledged
     # and was charging (not just booted up in a good state send signal
     # to navigation
-    elif ((battery >= constDOREE.READY) and (readysig == 0)
-          and (warnsig == 1)):
+    elif ((battery >= constDOREE.READY) and (readysig == 0)):
         print('Battery level: ', battery, 'V Ready level reached!')
-        # figure out code to send signal to navigation
-        # in the mean time test w variable test_warn
+        board.D17.value(0) # set pin low if ready level reached
 
-        test_warn, test_ready = 0, 1
         warnsig, readysig = 0, 1
         
     else:
