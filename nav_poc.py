@@ -19,14 +19,14 @@ try:
     LED_RIGHT_NAV = 1 #change when actually implemented
     """
 
-    GPIO.setup(PIN_POWER, GPIO.in)
-    GPIO.setup(PIN_DETECTION, GPIO.in)
+    GPIO.setup(PIN_POWER, GPIO.IN)
+    GPIO.setup(PIN_DETECTION, GPIO.IN)
 
 #power LED
     while GPIO.input(PIN_POWER)==1:
         GPIO.output(18, GPIO.HIGH) #change pin once inplemented
-    else GPIO.input(PIN_POWER)==0:
-        GPIO.output(18, GPIO.LOW) #change pin once inplemented
+   # elif GPIO.input(PIN_POWER)==0:
+    #    GPIO.output(18, GPIO.LOW) #change pin once inplemented
 
         """
     while GPIO.input(PIN_DETECTION)==1:
