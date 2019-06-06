@@ -34,13 +34,14 @@ board.D22.value(1)
 board.D22.value(0)
 
 # Set GPIO pin to output for ready/warning signal
-board.D17.init(1)
+board.D17.init(1) # warning level
+board.D27.init(1) # critical level
 
-# test variables until integration
-test_warn = 0 #has warning level been reached
-test_ready = 0 #has ready level been reached
-warnsig = 0 #signal has been sent or not, 1/0
-readysig = 0 #signal has been sent or not, 1/0
+# test variables until integration;
+# signal has been sent or not, 1/0
+critsig = 0
+warnsig = 0
+readysig = 0
 
 tol = 0.5
 print('Raw ADC Value: ', chan0.value)
@@ -50,12 +51,20 @@ while True:
     # current val of battery
     battery = chan0.voltage
 
+    if ((battery <= constDOREE.CRIT) and (critsig == 0)):
+        print('Battery level: ', battery, 'V Critical level reached!')
+        board.D17.value(0)
+        board.D27.value(1)
+
+        critsig, readysig = 1, 0
+                
     # if battery has reached warning level and hasn't been acknowledged
     # send signal to navigation
-    if ((battery <= constDOREE.WARN) and (warnsig == 0)):
+    elif ((battery <= constDOREE.WARN) and (warnsig == 0)):
         print('Battery level: ', battery, 'V Warning level reached!')
-        board.D17.value(1) # set pin high if warning level reached
-
+        board.D17.value(1)
+        board.D27.value(0)
+        
         warnsig, readysig = 1, 0
         
     # if battery has reached ready level and hasn't been acknowledged
@@ -64,8 +73,8 @@ while True:
     elif ((battery >= constDOREE.READY) and (readysig == 0)):
         print('Battery level: ', battery, 'V Ready level reached!')
         board.D17.value(0) # set pin low if ready level reached
-
-        warnsig, readysig = 0, 1
+        board.D27.value(0)
+        critsig, warnsig, readysig = 0, 0, 1
         
     else:
         print('Battery level: ', battery, 'V')
