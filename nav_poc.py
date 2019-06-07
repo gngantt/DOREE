@@ -8,7 +8,7 @@ Navigation Proof Of Concept Code
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 PIN_POWER_WARNING = 26
 PIN_POWER_CRITICAL = 19
