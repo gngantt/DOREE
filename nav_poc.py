@@ -6,35 +6,35 @@ Navigation Proof Of Concept Code
 
 #!/usr/bin/python
 import RPi.GPIO as GPIO
+import time
 
-try:
-    GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BOARD)
 
-    PIN_POWER = input("type 1 for high power and 0 for low power") #change when actually implemented
-    PIN_DETECTION = 1 #change when actually implemented
+PIN_POWER_WARNING = 26
+PIN_POWER_CRITICAL = 19
+#PIN_DETECTION = 1 
 
-    """
-    LED_POWER = 1 #change when actually implemented
-    LED_LEFT_NAV = 1 #change when actually implemented
-    LED_RIGHT_NAV = 1 #change when actually implemented
-    """
-
-    GPIO.setup(PIN_POWER, GPIO.IN)
-    GPIO.setup(PIN_DETECTION, GPIO.IN)
-
-#power LED
-    while GPIO.input(PIN_POWER)==1:
-        GPIO.output(18, GPIO.HIGH) #change pin once inplemented
-   # elif GPIO.input(PIN_POWER)==0:
-    #    GPIO.output(18, GPIO.LOW) #change pin once inplemented
-
-        """
-    while GPIO.input(PIN_DETECTION)==1:
-        GPIO.output(1, GPIO.HIGH) #change pin once inplemented
-    else GPIO.input(PIN_DETECTION)==1:
-        GPIO.output(1, GPIO.LOW) #change pin once inplemented
-        """
+   
+GPIO.setup(PIN_POWER_WARNING, GPIO.IN)
+GPIO.setup(PIN_POWER_CRITICAL, GPIO.IN)
+#GPIO.setup(PIN_DETECTION, GPIO.IN)
 
 
-finally:
-    GPIO.cleanup()
+while(1):
+  
+   if(GPIO.input(PIN_POWER_WARNING) == 1):
+        print(GPIO.input(PIN_POWER_WARNING))
+        print("Warning\n")
+        
+        #start timer for 10 mins? if noting found from detection send signalto stop
+    
+   if(GPIO.input(PIN_POWER_CRITICAL) == 1):
+        print(GPIO.input(PIN_POWER_CRITICAL))
+        print("Critical\n")
+        
+        #dont start timer - send robot up
+        #check for detection off (for loop - if noting at end go up anyway)
+   
+    
+        time.sleep(1)
+
