@@ -51,21 +51,21 @@ while True:
     # current val of battery
     battery = chan0.voltage
 
-    if ((battery <= constDOREE.CRIT) and (critsig == 0)):
-        print('Battery level: ', battery, 'V Critical level reached!')
-        board.D17.value(0)
-        board.D27.value(1)
-
-        critsig, readysig = 1, 0
-                
     # if battery has reached warning level and hasn't been acknowledged
     # send signal to navigation
-    elif ((battery <= constDOREE.WARN) and (warnsig == 0)):
+    if ((battery <= constDOREE.WARN) and (warnsig == 0)):
         print('Battery level: ', battery, 'V Warning level reached!')
         board.D17.value(1)
         board.D27.value(0)
         
         warnsig, readysig = 1, 0
+        
+    elif ((battery <= constDOREE.CRIT) and (critsig == 0)):
+        print('Battery level: ', battery, 'V Critical level reached!')
+        board.D17.value(0)
+        board.D27.value(1)
+
+        critsig, readysig = 1, 0
         
     # if battery has reached ready level and hasn't been acknowledged
     # and was charging (not just booted up in a good state send signal
