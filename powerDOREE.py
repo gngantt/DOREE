@@ -34,8 +34,8 @@ board.D22.value(1)
 board.D22.value(0)
 
 # Set GPIO pin to output for ready/warning signal
-board.D17.init(1) # warning level
-board.D27.init(1) # critical level
+board.D19.init(1) # warning level
+board.D26.init(1) # critical level
 
 # test variables until integration;
 # signal has been sent or not, 1/0
@@ -55,15 +55,15 @@ while True:
     # send signal to navigation
     if ((battery <= constDOREE.WARN) and (warnsig == 0)):
         print('Battery level: ', battery, 'V Warning level reached!')
-        board.D17.value(1)
-        board.D27.value(0)
+        board.D19.value(1)
+        board.D26.value(0)
         
         warnsig, readysig = 1, 0
         
     elif ((battery <= constDOREE.CRIT) and (critsig == 0)):
         print('Battery level: ', battery, 'V Critical level reached!')
-        board.D17.value(0)
-        board.D27.value(1)
+        board.D19.value(0)
+        board.D26.value(1)
 
         critsig, readysig = 1, 0
         
@@ -72,8 +72,8 @@ while True:
     # to navigation
     elif ((battery >= constDOREE.READY) and (readysig == 0)):
         print('Battery level: ', battery, 'V Ready level reached!')
-        board.D17.value(0) # set pin low if ready level reached
-        board.D27.value(0)
+        board.D19.value(0) # set pin low if ready level reached
+        board.D26.value(0)
         critsig, warnsig, readysig = 0, 0, 1
         
     else:
