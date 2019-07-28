@@ -104,4 +104,4 @@ while(1):
     x = acoustic()
 
     if(x < 20):
-        print("Object Dected")
+        print("Object detcted")
