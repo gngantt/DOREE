@@ -28,7 +28,7 @@ GPIO.setup(PIN_SHUTDOWN_DETECTION, GPIO.OUT)
 GPIO.output(PIN_SHUTDOWN_DETECTION, 0)
 
 warningAck = 0
-timeUp = 1
+timeUp = 0
 
 while(1):
 
@@ -41,16 +41,15 @@ while(1):
             warningAck = 1
 
         timeUp += 1
+        if(timeUp <= 10)
         print(timeUp)
         #print("Timer started")
+
 
         if(timeUp == 10):
             GPIO.output(PIN_SHUTDOWN_DETECTION, 1)
             print("Timer signal sent")
-            timeUp = 1
-
-        elif(timeUp > 10):
-            timeUp = 1
+            #timeUp = 1
 
 
     if(GPIO.input(PIN_POWER_CRITICAL) == 1):
@@ -63,6 +62,7 @@ while(1):
     if(GPIO.input(PIN_POWER_WARNING) == 0 and GPIO.input(PIN_POWER_CRITICAL) == 0):
         GPIO.output(PIN_SHUTDOWN_DETECTION, 0)
         warningAck = 0
+        timeUp = 0
 
 
 
