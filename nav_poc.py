@@ -37,6 +37,35 @@ GPIO.setup(PIN_ECHO, GPIO.IN)
 
 GPIO.output(PIN_TRIGGER, 0)
 
+
+def acoustic():
+    print ("Waiting for sensor to settle")
+
+    time.sleep(2)
+
+    print ("Calculationg distance")
+
+    GPIO.output(PIN_TRIGGER, 1)
+
+    time.sleep(0.00001)
+
+
+    GPIO.output(PIN_TRIGGER, 0)
+
+    while GPIO.input(PIN_ECHO)==0:
+        pulse_start_time = time.time()
+
+    while GPIO.input(PIN_ECHO)==1:
+        pulse_end_time = time.time()
+    pulse_duration = pulse_end_time - pulse_start_time
+    distance = round(pulse_duration * 17150, 2)
+    #print "Distance:", distance, "cm"
+    return distance
+
+
+
+
+
 warningAck = 0
 timeUp = 0
 
@@ -77,33 +106,7 @@ while(1):
         print(GPIO.input(PIN_DETECTION))
         print("Detected life form\n")
 
-    #x = acoustic()
+    x = acoustic()
 
-    #if(x < 15):
-        #print("Life form")
-
-
-
-    print ("Waiting for sensor to settle")
-
-    time.sleep(2)
-
-    print ("Calculationg distance")
-
-    GPIO.output(PIN_TRIGGER, 1)
-
-    time.sleep(0.00001)
-
-
-    GPIO.output(PIN_TRIGGER, 0)
-
-    while GPIO.input(PIN_ECHO)==0:
-        pulse_start_time = time.time()
-
-    while GPIO.input(PIN_ECHO)==1:
-        pulse_end_time = time.time()
-    pulse_duration = pulse_end_time - pulse_start_time
-    distance = round(pulse_duration * 17150, 2)
-    print "Distance:", distance, "cm"
-
-    time.sleep(1)
+    if(x < 15):
+        print("Life form")
