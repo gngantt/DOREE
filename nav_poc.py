@@ -32,14 +32,16 @@ timeUp = 1
 while(1):
 
     if(GPIO.input(PIN_POWER_WARNING) == 1):
-        print(GPIO.input(PIN_POWER_WARNING))
-        print("Warning\n")
+        #print(GPIO.input(PIN_POWER_WARNING))
+        print("Warning signal detected\n")
 
         timeUp += 1
-        print(timeUp)
+        #print(timeUp)
+        print("Timer started")
 
         if(timeUp == 10):
             GPIO.output(PIN_SHUTDOWN_DETECTION, 1)
+            print("Timer signal sent")
             timeUp = 1
 
         elif(timeUp > 10):
@@ -47,8 +49,8 @@ while(1):
 
 
     if(GPIO.input(PIN_POWER_CRITICAL) == 1):
-        print(GPIO.input(PIN_POWER_CRITICAL))
-        print("Critical\n")
+        //print(GPIO.input(PIN_POWER_CRITICAL))
+        print("Critical signal detected\n")
 
         #dont start timer - send robot up
         #check for detection off (for loop - if noting at end go up anyway)
