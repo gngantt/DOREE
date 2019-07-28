@@ -103,5 +103,5 @@ while(1):
 
     x = acoustic()
 
-    if(x < 15):
-        print("Life form")
+    if(x < 20):
+        print("Object Dected")
