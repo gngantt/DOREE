@@ -150,6 +150,7 @@ while(1):
 
             while GPIO.input(PIN_ECHO)==0:
                 pulse_start_time = time.time()
+                print(pulse_start_time)
 
             print("1")
             while GPIO.input(PIN_ECHO)==1:
