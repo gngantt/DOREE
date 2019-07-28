@@ -41,7 +41,7 @@ while(1):
             warningAck = 1
 
         timeUp += 1
-        if(timeUp <= 10)
+        if(timeUp <= 10):
         print(timeUp)
         #print("Timer started")
 
