@@ -42,7 +42,7 @@ while(1):
 
         timeUp += 1
         if(timeUp <= 10):
-        print(timeUp)
+            print(timeUp)
         #print("Timer started")
 
 
