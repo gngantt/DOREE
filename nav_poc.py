@@ -98,7 +98,7 @@ while(1):
         timeUp = 0
 
     if(GPIO.input(PIN_DETECTION) == 1):
-        print(GPIO.input(PIN_DETECTION))
+        #print(GPIO.input(PIN_DETECTION))
         print("Detected life form\n")
 
     x = acoustic()
