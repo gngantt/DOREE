@@ -49,7 +49,7 @@ while(1):
 
 
     if(GPIO.input(PIN_POWER_CRITICAL) == 1):
-        //print(GPIO.input(PIN_POWER_CRITICAL))
+        #print(GPIO.input(PIN_POWER_CRITICAL))
         print("Critical signal detected\n")
 
         #dont start timer - send robot up
