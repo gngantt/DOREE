@@ -35,9 +35,14 @@ while(1):
         #print(GPIO.input(PIN_POWER_WARNING))
         print("Warning signal detected\n")
 
+        if(timeUp ==1):
+            print("Timer started")
+
         timeUp += 1
-        #print(timeUp)
-        print("Timer started")
+        print(timeUp)
+        #print("Timer started")
+
+
 
         if(timeUp == 10):
             GPIO.output(PIN_SHUTDOWN_DETECTION, 1)
