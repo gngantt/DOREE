@@ -122,8 +122,6 @@ while(1):
 
 
     try:
-            GPIO.setmode(GPIO.BOARD)
-
             #initiates GPIO pins on Pi
             PIN_TRIGGER = 7
             PIN_ECHO = 11
