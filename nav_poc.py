@@ -84,43 +84,26 @@ while(1):
 
 
 
+        print ("Waiting for sensor to settle")
+
+        time.sleep(2)
+
+        print ("Calculationg distance")
+
+        GPIO.output(PIN_TRIGGER, 1)
+
+        time.sleep(0.00001)
 
 
+        GPIO.output(PIN_TRIGGER, 0)
 
-    try:
-            #initiates GPIO pins on Pi
+        while GPIO.input(PIN_ECHO)==0:
+            pulse_start_time = time.time()
 
-
-            print ("Waiting for sensor to settle")
-
-            time.sleep(2)
-
-            print ("Calculationg distance")
-
-            GPIO.output(PIN_TRIGGER, 1)
-
-            time.sleep(0.00001)
-
-
-            GPIO.output(PIN_TRIGGER, 0)
-
-            while GPIO.input(PIN_ECHO)==0:
-                pulse_start_time = time.time()
-
-            while GPIO.input(PIN_ECHO)==1:
-                pulse_end_time = time.time()
-            pulse_duration = pulse_end_time - pulse_start_time
-            distance = round(pulse_duration * 17150, 2)
-            print "Distance:", distance, "cm"
-
-    finally:
-        GPIO.cleanup()
-
-
-
-
-
-
-
+        while GPIO.input(PIN_ECHO)==1:
+            pulse_end_time = time.time()
+        pulse_duration = pulse_end_time - pulse_start_time
+        distance = round(pulse_duration * 17150, 2)
+        print "Distance:", distance, "cm"
 
     time.sleep(1)
