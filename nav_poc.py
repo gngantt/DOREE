@@ -26,6 +26,16 @@ GPIO.setup(PIN_DETECTION, GPIO.IN)
 GPIO.setup(PIN_SHUTDOWN_DETECTION, GPIO.OUT)
 
 GPIO.output(PIN_SHUTDOWN_DETECTION, 0)
+
+
+
+PIN_TRIGGER = 7
+PIN_ECHO = 11
+#sets pins to input or output
+GPIO.setup(PIN_TRIGGER, GPIO.OUT)
+GPIO.setup(PIN_ECHO, GPIO.IN)
+
+GPIO.output(PIN_TRIGGER, GPIO.LOW)
 """
 
 #GPIO.setmode(GPIO.BOARD)
@@ -123,14 +133,7 @@ while(1):
 
     try:
             #initiates GPIO pins on Pi
-            PIN_TRIGGER = 7
-            PIN_ECHO = 11
 
-            #sets pins to input or output
-            GPIO.setup(PIN_TRIGGER, GPIO.OUT)
-            GPIO.setup(PIN_ECHO, GPIO.IN)
-
-            GPIO.output(PIN_TRIGGER, GPIO.LOW)
 
             print ("Waiting for sensor to settle")
 
