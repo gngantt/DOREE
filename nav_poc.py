@@ -39,12 +39,6 @@ GPIO.output(PIN_TRIGGER, 0)
 
 
 def acoustic():
-    print ("Waiting for sensor to settle")
-
-    time.sleep(2)
-
-    print ("Calculationg distance")
-
     GPIO.output(PIN_TRIGGER, 1)
 
     time.sleep(0.00001)
