@@ -40,9 +40,6 @@ GPIO.setup(PIN_ECHO, GPIO.IN)
 
 GPIO.output(PIN_TRIGGER, GPIO.LOW)
 
-"""
-
-
 def acoustic():
     try:
             #print ("Waiting for sensor to settle")
@@ -71,8 +68,7 @@ def acoustic():
     finally:
         GPIO.cleanup()
 
-
-
+"""
 
 
 warningAck = 0
@@ -115,10 +111,10 @@ while(1):
         print(GPIO.input(PIN_DETECTION))
         print("Detected life form\n")
 
-    x = acoustic()
+    #x = acoustic()
 
-    if(x < 15):
-        print("Life form")
+    #if(x < 15):
+        #print("Life form")
 
 
 
