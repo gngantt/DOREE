@@ -29,8 +29,8 @@ GPIO.output(PIN_SHUTDOWN_DETECTION, 0)
 
 
 
-PIN_TRIGGER = 7
-PIN_ECHO = 11
+PIN_TRIGGER = 4
+PIN_ECHO = 17
 #sets pins to input or output
 GPIO.setup(PIN_TRIGGER, GPIO.OUT)
 GPIO.setup(PIN_ECHO, GPIO.IN)
