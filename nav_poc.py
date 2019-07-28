@@ -144,12 +144,14 @@ while(1):
 
 
             GPIO.output(PIN_TRIGGER, GPIO.LOW)
-            print("hello")
+
             while GPIO.input(PIN_ECHO)==0:
                 pulse_start_time = time.time()
+
+            print("1")
             while GPIO.input(PIN_ECHO)==1:
                 pulse_end_time = time.time()
-
+            print("2")
             pulse_duration = pulse_end_time - pulse_start_time
             distance = round(pulse_duration * 17150, 2)
             print "Distance:", distance, "cm"
