@@ -35,7 +35,7 @@ PIN_ECHO = 11
 GPIO.setup(PIN_TRIGGER, GPIO.OUT)
 GPIO.setup(PIN_ECHO, GPIO.IN)
 
-GPIO.output(PIN_TRIGGER, GPIO.LOW)
+GPIO.output(PIN_TRIGGER, 0)
 """
 
 #GPIO.setmode(GPIO.BOARD)
@@ -141,16 +141,15 @@ while(1):
 
             print ("Calculationg distance")
 
-            GPIO.output(PIN_TRIGGER, GPIO.HIGH)
+            GPIO.output(PIN_TRIGGER, 1)
 
             time.sleep(0.00001)
 
 
-            GPIO.output(PIN_TRIGGER, GPIO.LOW)
+            GPIO.output(PIN_TRIGGER, 0)
 
             while GPIO.input(PIN_ECHO)==0:
                 pulse_start_time = time.time()
-                print(pulse_start_time)
 
             print("1")
             while GPIO.input(PIN_ECHO)==1:
